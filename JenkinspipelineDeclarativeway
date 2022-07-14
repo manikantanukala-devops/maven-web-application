@@ -28,7 +28,7 @@ pipeline{
         stage('githubcode'){
             steps{
                 slackNotifications("STARTED")
-            git branch: '${params.Branchname}', credentialsId: '53f6da8d-d897-425d-821c-ec361c7e3c1e', url: 'https://github.com/manikantanukala-devops/maven-web-application.git'
+            git branch: "${params.Branchname}", credentialsId: '53f6da8d-d897-425d-821c-ec361c7e3c1e', url: 'https://github.com/manikantanukala-devops/maven-web-application.git'
             }
         }
         //Building packages with maven
