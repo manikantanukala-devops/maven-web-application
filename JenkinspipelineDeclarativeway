@@ -1,6 +1,11 @@
 pipeline{
     
     agent any
+    
+    parameters {
+  choice choices: ['development', 'master', 'qa'], description: 'Select Branch Name', name: 'Branchname'
+}
+
     tools{
         maven "maven3.8.5"
         // we can also add git version 
@@ -23,7 +28,7 @@ pipeline{
         stage('githubcode'){
             steps{
                 slackNotifications("STARTED")
-            git branch: 'development', credentialsId: '53f6da8d-d897-425d-821c-ec361c7e3c1e', url: 'https://github.com/manikantanukala-devops/maven-web-application.git'
+            git branch: '${params.Branchname}', credentialsId: '53f6da8d-d897-425d-821c-ec361c7e3c1e', url: 'https://github.com/manikantanukala-devops/maven-web-application.git'
             }
         }
         //Building packages with maven
