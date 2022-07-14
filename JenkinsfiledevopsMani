@@ -8,6 +8,7 @@ node
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
   
   try{
+    slackNotifications("STARTED")
     
     stage('Githubcode'){
         git branch: 'development', credentialsId: '53f6da8d-d897-425d-821c-ec361c7e3c1e', url: 'https://github.com/manikantanukala-devops/maven-web-application.git'
